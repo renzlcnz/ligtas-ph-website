@@ -1,139 +1,974 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#071b33" />
-  <meta name="description" content="Ligtas PH brings disaster preparedness information, emergency contacts, and safety guidance together in one place." />
-  <title>Ligtas PH — Stay Informed. Stay Ready.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<meta name="description" content="Ligtas PH helps Filipinos access disaster information, evacuation resources, first aid tutorials, and emergency communication tools.">
+<title>Ligtas PH | Stay Informed. Stay Ready.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --red: #c62026;
+  --dark: #101010;
+  --white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  margin: 0;
+  background: #f7f8fa;
+  color: #171717;
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+a { color: inherit; }
+button, input, select { font: inherit; }
+
+.container {
+  width: min(1160px, 90%);
+  margin: auto;
+}
+
+header {
+  background: #b91f24;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 3px 15px #0002;
+}
+
+nav {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.logo span { color: #ffe1b5; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.nav-links a:hover { text-decoration: underline; }
+
+.menu-button {
+  display: none;
+  background: transparent;
+  color: white;
+  border: 0;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.hero {
+  background: var(--dark);
+  color: white;
+  padding: 90px 0 80px;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.eyebrow {
+  color: #ff7979;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+h1 {
+  font-size: clamp(38px, 5vw, 65px);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin: 20px 0;
+}
+
+h1 span, h2 span { color: #ff555b; }
+
+.hero p {
+  color: #d0d0d0;
+  font-size: 19px;
+  max-width: 600px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border-radius: 12px;
+  background: var(--red);
+  color: white;
+  border: 2px solid var(--red);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+.btn-outline {
+  background: transparent;
+  border-color: #666;
+}
+
+.phone {
+  max-width: 380px;
+  width: 100%;
+  margin: auto;
+  background: #090909;
+  border: 8px solid #292929;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px #0008;
+}
+
+.phone-status {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 16px;
+  font-size: 12px;
+}
+
+.phone-header {
+  background: #bb2025;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.phone-header strong { display: block; font-size: 19px; }
+.phone-header small { font-size: 10px; line-height: 1.4; display: block; }
+
+.phone-content { padding: 18px 12px; }
+.phone-content h3 { font-size: 16px; margin-bottom: 12px; }
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tile {
+  min-height: 112px;
+  padding: 12px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.tile .emoji { font-size: 26px; }
+.tile-red { background: #bf2025; }
+.tile-orange { background: #ed590b; }
+.tile-teal { background: #11968a; }
+.tile-blue { background: #2452d7; }
+.tile-green { background: #168344; }
+.tile-purple { background: #8422cf; }
+
+.phone-sos {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+  background: #ef4145;
+  padding: 13px 8px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.trust-bar {
+  background: white;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 20px 0;
+}
+
+.trust-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-weight: 700;
+  color: #333;
+  font-size: 15px;
+}
+
+section.content-section { padding: 80px 0; }
+
+.section-heading {
+  max-width: 750px;
+  text-align: center;
+  margin: 0 auto 38px;
+}
+
+.section-heading .eyebrow { color: #bc2228; }
+
+h2 {
+  font-size: clamp(30px, 4vw, 45px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+  margin: 12px 0 18px;
+}
+
+.section-heading p {
+  font-size: 18px;
+  color: #666;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: white;
+  padding: 27px;
+  border: 1px solid #e8e8e8;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px #00000008;
+}
+
+.feature-icon {
+  font-size: 32px;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  background: #fff0f0;
+  border-radius: 15px;
+  margin-bottom: 16px;
+}
+
+.feature-card h3 { font-size: 21px; margin-bottom: 8px; }
+.feature-card p { color: #626262; margin-bottom: 15px; }
+.feature-card a { color: #b91f24; font-weight: 800; }
+
+.dark-section {
+  background: var(--dark);
+  color: white;
+}
+
+.dark-section .section-heading p { color: #c6c6c6; }
+
+.source-grid, .lgu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.source-card {
+  padding: 26px;
+  border-radius: 16px;
+  background: #202020;
+  border: 1px solid #363636;
+}
+
+.source-card h3 { font-size: 22px; margin: 10px 0; }
+.source-card p { color: #ccc; }
+.source-card a { color: #ff8d8d; font-weight: 800; }
+.source-icon { font-size: 32px; }
+
+.lgu-card {
+  display: block;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 15px;
+  padding: 23px;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.lgu-card:hover { border-color: var(--red); transform: translateY(-3px); }
+.lgu-card strong { display: block; font-size: 20px; margin-bottom: 6px; }
+.lgu-card span { color: #666; font-size: 15px; }
+.lgu-card b { display: block; color: #b91f24; margin-top: 13px; }
+
+.firstaid-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  margin-top: 45px;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 16px;
+  background: #111;
+}
+
+.firstaid-copy p { color: #666; }
+
+.sms-section { background: #fff0f0; }
+
+.sms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.sms-grid p { color: #555; }
+
+.sms-form {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px #0000000c;
+}
+
+.sms-form label {
+  display: block;
+  font-weight: 800;
+  margin: 15px 0 7px;
+}
+
+.sms-form input, .sms-form select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  background: white;
+}
+
+.sms-form .btn { width: 100%; margin-top: 20px; }
+
+.small-note { font-size: 13px; color: #777; margin: 14px 0 0; }
+
+.checklist {
+  background: white;
+  border: 1px solid #e5e5e5;
+  padding: 25px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.checklist label {
+  display: flex;
+  align-items: start;
+  gap: 13px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checklist input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  accent-color: #b91f24;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.check-progress { font-weight: 800; color: #b91f24; }
+
+.cta {
+  background: #b91f24;
+  color: white;
+  padding: 65px 0;
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.cta h2 { max-width: 720px; color: white; }
+.cta p { max-width: 700px; color: #ffe5e5; font-size: 18px; }
+.btn-white { background: white; color: #b91f24; border-color: white; }
+
+footer {
+  background: #101010;
+  color: white;
+  padding: 35px 0;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+footer p, footer small { color: #bbb; }
+footer a { color: white; }
+
+@media (max-width: 850px) {
+  .hero-grid, .sms-grid, .firstaid-grid { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0; }
+  .hero-copy { text-align: center; }
+  .hero-copy .actions { justify-content: center; }
+  .phone { max-width: 350px; }
+  .feature-grid, .source-grid, .lgu-grid { grid-template-columns: repeat(2, 1fr); }
+  .cta-inner { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .container { width: 92%; }
+  nav { min-height: 65px; }
+  .menu-button { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: #a91b20;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links.open { display: flex; }
+  .feature-grid, .source-grid, .lgu-grid { grid-template-columns: 1fr; }
+  section.content-section { padding: 58px 0; }
+  .hero p { font-size: 17px; }
+  .feature-card, .source-card { padding: 22px; }
+  .sms-form { padding: 20px; }
+}
+
+
+/* Refined layout: calmer typography, tighter sections, and more breathing room */
+body {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.container { width: min(1120px, 90%); }
+nav { min-height: 68px; }
+.logo { font-size: 24px; }
+.nav-links { gap: 20px; }
+.nav-links a { font-size: 14px; }
+.hero { padding: 68px 0; }
+.hero-grid { gap: 44px; }
+h1 {
+  font-size: clamp(34px, 4.3vw, 54px);
+  line-height: 1.12;
+  letter-spacing: -1.4px;
+  margin: 15px 0;
+}
+h2 {
+  font-size: clamp(27px, 3.2vw, 38px);
+  line-height: 1.2;
+  letter-spacing: -.7px;
+}
+h3 { line-height: 1.3; }
+.hero p { font-size: 16px; line-height: 1.65; }
+.eyebrow { font-size: 11px; letter-spacing: 1.5px; }
+.btn { padding: 11px 18px; font-size: 14px; border-radius: 9px; }
+.phone { max-width: 350px; }
+.phone-header strong { font-size: 17px; }
+.phone-content { padding: 15px 11px; }
+.tiles { gap: 10px; }
+.tile { min-height: 100px; padding: 11px; font-size: 12px; }
+.tile .emoji { font-size: 23px; }
+.trust-bar { padding: 16px 0; }
+.trust-items { gap: 10px 20px; font-size: 13px; }
+section.content-section { padding: 62px 0; }
+.section-heading { margin-bottom: 30px; }
+.section-heading h2 { margin: 10px 0 13px; }
+.section-heading p { font-size: 15px; line-height: 1.65; }
+.feature-grid { gap: 16px; }
+.feature-card { padding: 22px; border-radius: 14px; }
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 27px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.feature-card h3 { font-size: 18px; margin-bottom: 7px; }
+.feature-card p { font-size: 14px; line-height: 1.65; margin-bottom: 12px; }
+.feature-card a, .source-card a { font-size: 13px; }
+.source-grid, .lgu-grid { gap: 15px; }
+.source-card { padding: 22px; }
+.source-card h3 { font-size: 19px; }
+.source-card p { font-size: 14px; line-height: 1.65; }
+.source-icon { font-size: 28px; }
+.lgu-card { padding: 20px; }
+.lgu-card strong { font-size: 17px; }
+.lgu-card span { font-size: 13px; }
+.lgu-card b { font-size: 13px; }
+.firstaid-grid, .sms-grid { gap: 30px; }
+.firstaid-copy p, .sms-grid p { font-size: 14px; line-height: 1.7; }
+.video-frame { border-radius: 12px; }
+.sms-form { padding: 24px; }
+.sms-form label { font-size: 13px; margin: 12px 0 6px; }
+.sms-form input, .sms-form select { padding: 11px; font-size: 14px; }
+.small-note { font-size: 12px; line-height: 1.5; }
+.checklist { padding: 22px; }
+.checklist label { font-size: 14px; padding: 12px 0; line-height: 1.5; }
+.checklist input { width: 18px; height: 18px; }
+.check-progress { font-size: 14px; }
+.cta { padding: 50px 0; }
+.cta p { font-size: 15px; }
+footer { padding: 28px 0; }
+footer p, footer small, footer .footer-inner > div:nth-child(2) { font-size: 12px; line-height: 1.7; }
+
+@media (max-width: 850px) {
+  .hero { padding: 54px 0; }
+  .hero-grid { gap: 34px; }
+  section.content-section { padding: 52px 0; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 14px; }
+  .container { width: 92%; }
+  nav { min-height: 62px; }
+  .logo { font-size: 22px; }
+  .nav-links { top: 62px; gap: 16px; }
+  .hero { padding: 44px 0; }
+  h1 { font-size: 35px; letter-spacing: -1px; }
+  h2 { font-size: 28px; }
+  .hero p { font-size: 15px; }
+  .hero-copy > p:last-child { font-size: 12px !important; }
+  .phone { max-width: 320px; }
+  .trust-items { justify-content: center; font-size: 12px; }
+  section.content-section { padding: 44px 0; }
+  .section-heading { margin-bottom: 24px; }
+  .feature-card, .source-card { padding: 20px; }
+  .sms-form { padding: 20px; }
+  .cta { padding: 42px 0; }
+  .footer-inner { gap: 14px; }
+}
+
+</style>
 </head>
+
 <body>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Ligtas PH home">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 3 34 8v10c0 9-5.8 15.1-14 19C11.8 33.1 6 27 6 18V8l14-5Z" fill="currentColor"/><path d="m12 20 5.2 5.2L28.5 14" fill="none" stroke="#071b33" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span>Ligtas <b>PH</b></span>
-      </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#features">Features</a>
-        <a href="#preparedness">Be Prepared</a>
-        <a href="#about">About</a>
-        <a class="nav-cta" href="#get-started">Explore Ligtas PH <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-glow glow-one"></div><div class="hero-glow glow-two"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="pulse"></span> DISASTER READINESS, MADE CLEARER</div>
-          <h1>When every moment matters, <span>be ready.</span></h1>
-          <p class="hero-lede">Important disaster information can be hard to find when you need it most. Ligtas PH aims to bring essential safety resources together in one accessible place.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#features">Discover the features <span aria-hidden="true">→</span></a>
-            <a class="button button-ghost" href="#preparedness">Preparedness checklist</a>
-          </div>
-          <div class="hero-proof">
-            <div class="avatar-stack" aria-hidden="true"><span>✓</span><span>+</span><span>↗</span></div>
-            <p><strong>Stay informed. Stay ready.</strong><br><small>Preparedness starts before a disaster.</small></p>
-          </div>
-        </div>
-        <div class="hero-visual" aria-label="Illustration of disaster information on a mobile phone">
-          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
-          <div class="floating-card card-alert"><span class="mini-icon alert-icon">!</span><div><strong>Be alert</strong><small>Know where to look for updates</small></div></div>
-          <div class="phone">
-            <div class="phone-top"><span>9:41</span><span>● ● ▰</span></div>
-            <div class="app-head"><div class="app-symbol">✓</div><div><strong>Ligtas PH</strong><small>Your safety companion</small></div><span class="menu-dots">•••</span></div>
-            <div class="welcome">Good day! <span>👋</span><h3>Stay prepared.</h3><p>Keep important safety information within reach.</p></div>
-            <div class="phone-alert"><div class="alert-symbol">⌁</div><div><strong>Disaster updates</strong><small>Follow trusted official advisories</small></div><span>›</span></div>
-            <div class="phone-tiles"><div><span class="tile-symbol blue">⌖</span><b>Evacuation</b><small>Know your options</small></div><div><span class="tile-symbol mint">☎</span><b>Emergency</b><small>Useful contacts</small></div><div><span class="tile-symbol gold">✚</span><b>First aid</b><small>Safety guidance</small></div><div><span class="tile-symbol coral">✓</span><b>Checklist</b><small>Prepare essentials</small></div></div>
-            <div class="phone-bottom"><span class="active">⌂<small>Home</small></span><span>⌖<small>Map</small></span><span>▤<small>Records</small></span><span>☻<small>Profile</small></span></div>
-          </div>
-          <div class="floating-card card-ready"><span class="ready-check">✓</span><div><strong>Preparation matters</strong><small>Make a plan with your family</small></div></div>
-          <div class="visual-caption"><span class="caption-dot"></span> CONCEPT PREVIEW · NOT A LIVE APP</div>
-        </div>
-      </div>
-      <div class="hero-bottom-line"></div>
-    </section>
-
-    <section class="trust-strip">
-      <div class="container trust-inner">
-        <span class="trust-label">DESIGNED AROUND EVERYDAY READINESS</span>
-        <div><span class="trust-icon">⌁</span> Disaster information</div>
-        <div><span class="trust-icon">⌖</span> Evacuation awareness</div>
-        <div><span class="trust-icon">✚</span> Safety guidance</div>
-      </div>
-    </section>
-
-    <section class="section features-section" id="features">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow dark-eyebrow">ONE PLACE TO START</span>
-          <h2>Information that helps you <span>prepare.</span></h2>
-          <p>Ligtas PH is a proposed mobile app concept designed to make essential disaster-readiness resources easier to find.</p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card feature-blue"><div class="feature-icon">⌁</div><span class="feature-number">01</span><h3>Disaster alerts</h3><p>Find a starting point for trusted weather and disaster advisories from official sources.</p><a href="#about" aria-label="Learn about disaster alerts">Learn more <span>↗</span></a></article>
-          <article class="feature-card feature-mint"><div class="feature-icon">⌖</div><span class="feature-number">02</span><h3>Evacuation information</h3><p>Make it easier to look for evacuation guidance and plan where to go before an emergency.</p><a href="#about" aria-label="Learn about evacuation information">Learn more <span>↗</span></a></article>
-          <article class="feature-card feature-gold"><div class="feature-icon">☎</div><span class="feature-number">03</span><h3>Emergency contacts</h3><p>Keep important contact information organized so it is easier to find when needed.</p><a href="#about" aria-label="Learn about emergency contacts">Learn more <span>↗</span></a></article>
-          <article class="feature-card feature-coral"><div class="feature-icon">✚</div><span class="feature-number">04</span><h3>Preparedness guides</h3><p>Review practical checklists and basic safety guidance to help you prepare ahead.</p><a href="#preparedness" aria-label="See preparedness checklist">See checklist <span>↗</span></a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="preparedness-section" id="preparedness">
-      <div class="container preparedness-grid">
-        <div class="prep-copy">
-          <span class="eyebrow">START BEFORE THE STORM</span>
-          <h2>A little preparation can make a <span>big difference.</span></h2>
-          <p>Use this simple checklist as a starting point for your household or dorm. Check off each item as you prepare.</p>
-          <div class="prep-note"><span>i</span><p>Always follow current instructions from your local authorities and official emergency agencies.</p></div>
-        </div>
-        <div class="checklist-card">
-          <div class="checklist-top"><div><span class="checklist-kicker">YOUR QUICK PLAN</span><h3>Preparedness checklist</h3></div><span class="checklist-badge" id="progressText">0 of 5</span></div>
-          <div class="progress-track"><span id="progressBar"></span></div>
-          <div class="checklist-items">
-            <label class="check-item"><input type="checkbox"><span class="custom-check"></span><span><b>Prepare an emergency kit</b><small>Water, food, flashlight, batteries, and first aid.</small></span></label>
-            <label class="check-item"><input type="checkbox"><span class="custom-check"></span><span><b>Save important contacts</b><small>Include family members and local emergency services.</small></span></label>
-            <label class="check-item"><input type="checkbox"><span class="custom-check"></span><span><b>Know your evacuation options</b><small>Learn local routes and designated evacuation centers.</small></span></label>
-            <label class="check-item"><input type="checkbox"><span class="custom-check"></span><span><b>Follow official advisories</b><small>Check trusted sources for updated information.</small></span></label>
-            <label class="check-item"><input type="checkbox"><span class="custom-check"></span><span><b>Make a family communication plan</b><small>Agree on where to meet and how to check in.</small></span></label>
-          </div>
-          <p class="checklist-footer"><span>✓</span> Every step forward counts.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section section" id="about">
-      <div class="container about-grid">
-        <div class="about-emblem"><div class="emblem-ring"><div class="emblem-shield">✓</div><span class="emblem-label label-top">PREPARE</span><span class="emblem-label label-right">PROTECT</span><span class="emblem-label label-bottom">RESPOND</span><span class="emblem-label label-left">RECOVER</span></div></div>
-        <div class="about-copy"><span class="eyebrow dark-eyebrow">ABOUT LIGTAS PH</span><h2>Built around a simple idea: <span>readiness for everyone.</span></h2><p>Disaster information can be scattered across agency websites, local announcements, and social media. Ligtas PH is a student venture concept that aims to make key information and preparedness resources easier to access through one mobile experience.</p><p>Our goal is to encourage preparedness and help users know where to look for reliable information when it matters.</p><div class="about-values"><div><b>Accessible</b><small>Designed to be straightforward</small></div><div><b>Preparedness-first</b><small>Encouraging action before emergencies</small></div><div><b>Community-minded</b><small>Focused on local safety needs</small></div></div></div>
-      </div>
-    </section>
-
-    <section class="cta-section" id="get-started">
-      <div class="container cta-inner">
-        <div><span class="eyebrow">YOUR NEXT STEP STARTS TODAY</span><h2>Be ready before you need to be.</h2><p>Learn about disaster preparedness, check official advisories, and start building your safety plan today.</p></div>
-        <a class="button button-light" href="https://www.pagasa.dost.gov.ph/" target="_blank" rel="noopener noreferrer">Visit PAGASA <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-main">
-      <a class="brand footer-brand" href="#home"><span class="brand-mark"><svg viewBox="0 0 40 40"><path d="M20 3 34 8v10c0 9-5.8 15.1-14 19C11.8 33.1 6 27 6 18V8l14-5Z" fill="currentColor"/><path d="m12 20 5.2 5.2L28.5 14" fill="none" stroke="#071b33" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Ligtas <b>PH</b></span></a>
-      <p>Stay informed. Stay ready. Stay safe.</p>
-      <div class="footer-links"><a href="#features">Features</a><a href="#preparedness">Checklist</a><a href="https://www.pagasa.dost.gov.ph/" target="_blank" rel="noopener noreferrer">PAGASA ↗</a></div>
+<header>
+  <nav class="container">
+    <a class="logo" href="#home">Ligtas <span>PH</span></a>
+    <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">Features</a>
+      <a href="#news">Trusted News</a>
+      <a href="#evacuation">Evacuation</a>
+      <a href="#firstaid">First Aid</a>
+      <a href="#sms">Emergency SMS</a>
     </div>
-    <div class="container footer-bottom"><span>© <span id="year"></span> Ligtas PH · Student venture concept</span><span class="disclaimer">Concept website only. Not an official emergency service. In an emergency, contact local authorities.</span></div>
-  </footer>
-  <script src="/script.js"></script>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">DISASTER READINESS, MADE CLEARER</span>
+      <h1>Be ready before disaster <span>strikes.</span></h1>
+      <p>Find trusted disaster information, official evacuation resources, first-aid tutorials, and emergency communication tools in one easy-to-explore place.</p>
+      <div class="actions">
+        <a class="btn" href="#features">Explore Features →</a>
+        <a class="btn btn-outline" href="#preparedness">Prepare Today</a>
+      </div>
+      <p style="margin-top:24px;font-size:15px">✓ Trusted-source links &nbsp; ✓ Local resources &nbsp; ✓ Practical safety guidance</p>
+    </div>
+
+    <div class="phone">
+      <div class="phone-status"><span>9:41</span><span>● ● ▰</span></div>
+      <div class="phone-header">
+        <div><strong>Home</strong><small>Stay informed. Stay ready.</small></div>
+        <span>♥ &nbsp; ☻</span>
+      </div>
+      <div class="phone-content">
+        <h3>Tools &amp; Resources</h3>
+        <div class="tiles">
+          <div class="tile tile-red"><span class="emoji">⚠</span>Alerts</div>
+          <div class="tile tile-orange"><span class="emoji">▤</span>News Updates</div>
+          <div class="tile tile-teal"><span class="emoji">👥</span>Community</div>
+          <div class="tile tile-blue"><span class="emoji">☎</span>Emergency Hotlines</div>
+          <div class="tile tile-green"><span class="emoji">☷</span>Safety Checklist</div>
+          <div class="tile tile-purple"><span class="emoji">✚</span>First Aid &amp; Safety</div>
+        </div>
+        <a class="phone-sos" href="#sms">✉ SMS EMERGENCY</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="container trust-items">
+    <span>🌦 Official Advisories</span>
+    <span>📍 Local Resources</span>
+    <span>🩹 First Aid Learning</span>
+    <span>✉ Emergency Messaging</span>
+  </div>
+</div>
+
+<section class="content-section" id="features">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">WHY LIGTAS PH?</span>
+      <h2>Everything starts with <span>being prepared.</span></h2>
+      <p>Important information shouldn't be difficult to find. Ligtas PH brings useful preparedness resources together and points you to official sources.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon">🌦</div>
+        <h3>Trusted Disaster News</h3>
+        <p>Access official weather forecasts, earthquake information, volcano bulletins, and disaster advisories.</p>
+        <a href="#news">Explore trusted sources →</a>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>LGU Evacuation Resources</h3>
+        <p>Find official city resources and local government links to research evacuation centers and local instructions.</p>
+        <a href="#evacuation">Find LGU resources →</a>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🩹</div>
+        <h3>Basic First Aid Tutorials</h3>
+        <p>Learn introductory safety practices through educational videos and discover where to find proper training.</p>
+        <a href="#firstaid">Learn basic first aid →</a>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">✉</div>
+        <h3>SMS Emergency Button</h3>
+        <p>Prepare an emergency text with your location and request for help, then review and send it through your messaging app.</p>
+        <a href="#sms">Prepare an SMS →</a>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">☑</div>
+        <h3>Preparedness Checklist</h3>
+        <p>Check your emergency kit, important contacts, family communication plan, and evacuation preparations.</p>
+        <a href="#preparedness">Start your checklist →</a>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">☎</div>
+        <h3>Emergency Contacts</h3>
+        <p>Use official resources to look up emergency contacts and local response information before an emergency.</p>
+        <a href="#evacuation">Explore local resources →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="content-section dark-section" id="news">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">INFORMATION YOU CAN TRACE</span>
+      <h2>Get updates from <span>trusted sources.</span></h2>
+      <p>Use official agency websites for current advisories and check the original source for the latest information.</p>
+    </div>
+
+    <div class="source-grid">
+      <article class="source-card">
+        <div class="source-icon">🌧️</div>
+        <h3>PAGASA</h3>
+        <p>Weather forecasts, tropical cyclone bulletins, rainfall warnings, and flood advisories.</p>
+        <a href="https://www.pagasa.dost.gov.ph/" target="_blank" rel="noopener noreferrer">Visit official website ↗</a>
+      </article>
+
+      <article class="source-card">
+        <div class="source-icon">🌋</div>
+        <h3>DOST–PHIVOLCS</h3>
+        <p>Earthquake information, volcano bulletins, and tsunami advisories.</p>
+        <a href="https://www.phivolcs.dost.gov.ph/" target="_blank" rel="noopener noreferrer">View hazard advisories ↗</a>
+      </article>
+
+      <article class="source-card">
+        <div class="source-icon">🛡️</div>
+        <h3>NDRRMC / OCD</h3>
+        <p>National disaster preparedness, response information, and official announcements.</p>
+        <a href="https://ocd.gov.ph/" target="_blank" rel="noopener noreferrer">Visit official website ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="evacuation">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">THINK LOCAL. PLAN AHEAD.</span>
+      <h2>Find evacuation information <span>from your LGU.</span></h2>
+      <p>Explore local government websites and announcements for evacuation information and local guidance.</p>
+    </div>
+
+    <div class="lgu-grid">
+      <a class="lgu-card" href="https://quezoncity.gov.ph/qcitizen-guides/quezon-city-evacuation-centers/" target="_blank" rel="noopener noreferrer">
+        <strong>📍 Quezon City</strong>
+        <span>Evacuation center information</span>
+        <b>Open official resource ↗</b>
+      </a>
+
+      <a class="lgu-card" href="https://pasigcity.gov.ph/services" target="_blank" rel="noopener noreferrer">
+        <strong>📍 Pasig City</strong>
+        <span>Official city services and resources</span>
+        <b>Open city website ↗</b>
+      </a>
+
+      <a class="lgu-card" href="https://www.marikina.gov.ph/" target="_blank" rel="noopener noreferrer">
+        <strong>📍 Marikina City</strong>
+        <span>Official city website and announcements</span>
+        <b>Open city website ↗</b>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="firstaid" style="background:#f0f4f8">
+  <div class="container">
+    <div class="firstaid-grid">
+      <div class="firstaid-copy">
+        <span class="eyebrow">LEARN A LIFE-SAVING SKILL</span>
+        <h2>Basic first aid, <span>step by step.</span></h2>
+        <p>Learn introductory first-aid principles through educational videos. In an emergency, contact local emergency services and follow instructions from trained responders.</p>
+        <a class="btn" href="https://redcross.org.ph/trainings/" target="_blank" rel="noopener noreferrer">Explore Red Cross training ↗</a>
+      </div>
+      <div>
+        <iframe class="video-frame" src="https://www.youtube-nocookie.com/embed/JScLiHiilK4" title="Basic First Aid educational video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p class="small-note">You can also explore first-aid training resources from the Philippine Red Cross.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section sms-section" id="sms">
+  <div class="container sms-grid">
+    <div>
+      <span class="eyebrow">QUICK CONTACT WHEN IT MATTERS</span>
+      <h2>Prepare an <span>emergency SMS.</span></h2>
+      <p>Prepare a text message for a trusted contact. Include your location and the kind of help you need. Review the message before sending it.</p>
+      <p><strong>Note:</strong> Your phone must support messaging. Your messaging provider's charges or requirements may apply.</p>
+    </div>
+
+    <form class="sms-form" id="smsForm">
+      <label for="smsNumber">Trusted contact's mobile number</label>
+      <input id="smsNumber" type="tel" placeholder="Enter mobile number" required>
+
+      <label for="smsLocation">Your location or landmark</label>
+      <input id="smsLocation" type="text" placeholder="Barangay, street, or landmark" required>
+
+      <label for="smsNeed">What help do you need?</label>
+      <select id="smsNeed">
+        <option>Emergency assistance needed</option>
+        <option>Medical assistance needed</option>
+        <option>Flooding or evacuation assistance needed</option>
+        <option>I am safe; please check in</option>
+      </select>
+
+      <button class="btn" type="submit">✉ Open Emergency SMS</button>
+      <p class="small-note">Your messaging app opens with a draft. You must review and press Send.</p>
+    </form>
+  </div>
+</section>
+
+<section class="content-section" id="preparedness">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">START BEFORE THE STORM</span>
+      <h2>Take one step toward <span>being prepared.</span></h2>
+      <p>Use this checklist to begin preparing your household, dorm, or family.</p>
+    </div>
+
+    <div class="checklist">
+      <p class="check-progress" id="checkProgress" aria-live="polite">0 of 5 completed</p>
+
+      <label>
+        <input type="checkbox">
+        <span>Prepare an emergency kit with water, food, flashlight, and first-aid supplies.</span>
+      </label>
+
+      <label>
+        <input type="checkbox">
+        <span>Save family contacts and verified local emergency numbers.</span>
+      </label>
+
+      <label>
+        <input type="checkbox">
+        <span>Check official evacuation information for your area.</span>
+      </label>
+
+      <label>
+        <input type="checkbox">
+        <span>Follow trusted disaster and weather advisories.</span>
+      </label>
+
+      <label>
+        <input type="checkbox">
+        <span>Make a family communication and meeting plan.</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container cta-inner">
+    <div>
+      <span class="eyebrow" style="color:#ffe0e0">YOUR SAFETY STARTS WITH PREPARATION</span>
+      <h2>Don't wait for a disaster to get ready.</h2>
+      <p>Explore trusted resources, learn basic safety skills, and take practical steps toward a better emergency plan.</p>
+    </div>
+    <a class="btn btn-white" href="#features">Explore Ligtas PH ↑</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <a class="logo" href="#home">Ligtas <span>PH</span></a>
+      <p>Stay informed. Stay ready. Stay safe.</p>
+    </div>
+    <div>
+      <a href="#features">Features</a> ·
+      <a href="#news">Trusted News</a> ·
+      <a href="#evacuation">Evacuation</a> ·
+      <a href="#firstaid">First Aid</a>
+    </div>
+    <small>Student venture project. For emergencies, contact the appropriate local authorities.</small>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile navigation
+  const menuButton = document.getElementById('menuButton');
+  const navLinks = document.getElementById('navLinks');
+
+  if (menuButton && navLinks) {
+    menuButton.addEventListener('click', function() {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Emergency SMS form
+  const smsForm = document.getElementById('smsForm');
+
+  if (smsForm) {
+    smsForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const number = document.getElementById('smsNumber').value.trim();
+      const location = document.getElementById('smsLocation').value.trim();
+      const need = document.getElementById('smsNeed').value;
+
+      if (!number || !location) {
+        alert('Please enter a contact number and your location.');
+        return;
+      }
+
+      const message =
+        'LIGTAS PH EMERGENCY MESSAGE\n' +
+        need + '.\n' +
+        'My location: ' + location + '.\n' +
+        'Please contact me and help notify the appropriate responders if needed.';
+
+      const smsLink = 'sms:' + encodeURIComponent(number) +
+        '?body=' + encodeURIComponent(message);
+
+      window.location.href = smsLink;
+    });
+  }
+
+  // Preparedness checklist counter
+  const checklistItems = document.querySelectorAll(
+    '.checklist input[type="checkbox"]'
+  );
+  const progressText = document.getElementById('checkProgress');
+
+  function updateProgress() {
+    let completed = 0;
+
+    checklistItems.forEach(function(item) {
+      if (item.checked) {
+        completed++;
+      }
+    });
+
+    if (progressText) {
+      progressText.textContent =
+        completed + ' of ' + checklistItems.length + ' completed';
+
+      if (completed === checklistItems.length) {
+        progressText.textContent += ' — Great job!';
+      }
+    }
+  }
+
+  checklistItems.forEach(function(item) {
+    item.addEventListener('change', updateProgress);
+  });
+
+  // Set the correct initial checklist count
+  updateProgress();
+});
+</script>
+
 </body>
 </html>
